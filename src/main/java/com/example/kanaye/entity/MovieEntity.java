@@ -2,13 +2,16 @@ package com.example.kanaye.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "movie")
-public class MovieEntity {
+@RedisHash(value = "movie")
+public class MovieEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

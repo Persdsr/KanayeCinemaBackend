@@ -7,6 +7,7 @@ import com.example.kanaye.repository.GenreRepo;
 import com.example.kanaye.repository.MovieRepo;
 import com.example.kanaye.models.Movie;
 import com.example.kanaye.repository.UserRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,7 @@ public class MovieService {
         this.genreRepo = genreRepo;
         this.userRepo = userRepo;
     }
+
 
     public ResponseEntity getAllMovies() {
         return ResponseEntity.ok().body(movieRepo.findAll());
