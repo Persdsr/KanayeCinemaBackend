@@ -277,4 +277,7 @@ public class MovieService {
         return movies;
     }
 
+    public ResponseEntity lastTwo() {
+        return ResponseEntity.ok(movieRepo.findFirst2ByOrderByIdDesc());
+    }
 }

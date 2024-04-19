@@ -70,6 +70,11 @@ public class MovieController {
         return movieService.deleteMovie(id);
     }
 
+    @GetMapping("/api/lasttwo")
+    public ResponseEntity lastTwo() {
+        return movieService.lastTwo();
+    }
+
     @GetMapping("/download/{filename:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
         Resource resource = storageService.loadAsResource(filename);
