@@ -10,7 +10,6 @@ import java.util.*;
 
 @Entity
 @Table(name = "movie")
-@RedisHash(value = "movie")
 public class MovieEntity implements Serializable {
 
     @Id
@@ -44,6 +43,7 @@ public class MovieEntity implements Serializable {
     private List<ReviewEntity> reviews;
 
     @ElementCollection
+    @JsonIgnore
     private List<String> screenshots;
 
     private String author;

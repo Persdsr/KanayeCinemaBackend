@@ -1,5 +1,6 @@
 package com.example.kanaye.controller;
 
+import com.example.kanaye.entity.MovieEntity;
 import com.example.kanaye.service.MovieService;
 import com.example.kanaye.service.StorageService;
 import com.example.kanaye.models.Movie;
@@ -11,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 @RestController
@@ -25,14 +28,19 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/api/movie")
-    public ResponseEntity getAllMovies() {
-        return movieService.getAllMovies();
+    @GetMapping("/api/movies")
+    public ResponseEntity getAllMovies() throws InterruptedException {
+        return ResponseEntity.ok().body(movieService.getAllMovies());
     }
 
-    @GetMapping("/api/movie/{id}")
+    @GetMapping("/api/movie/detail/{id}")
     public ResponseEntity getMovieDetail(@PathVariable("id") Long id) {
-        return movieService.getMovieById(id);
+        return ResponseEntity.ok().body(movieService.getMovieById(id));
+    }
+
+    @GetMapping("/api/movies/{genreTitle}")
+    public ResponseEntity getMovieByGenreTitle(@PathVariable("genreTitle") String genreTitle) {
+        return ResponseEntity.ok().body(movieService.movieByGenreTitle(genreTitle));
     }
 
     @PostMapping(value = "/api/add_movie", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -77,11 +85,6 @@ public class MovieController {
                 .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
     }*/
-
-    @GetMapping("/api/lasttwo")
-    public ResponseEntity lastTwo() {
-        return movieService.lastTwo();
-    }
 
 }
 

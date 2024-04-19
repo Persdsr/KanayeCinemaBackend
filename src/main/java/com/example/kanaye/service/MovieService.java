@@ -3,11 +3,14 @@ package com.example.kanaye.service;
 import com.example.kanaye.entity.GenreEntity;
 import com.example.kanaye.entity.MovieEntity;
 import com.example.kanaye.entity.User;
+import com.example.kanaye.models.MovieWithoutGenres;
 import com.example.kanaye.repository.GenreRepo;
 import com.example.kanaye.repository.MovieRepo;
 import com.example.kanaye.models.Movie;
 import com.example.kanaye.repository.UserRepository;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisHash;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,13 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class MovieService {
 
     private final MovieRepo movieRepo;
 
-    private StorageService storageService;
+    private final StorageService storageService;
 
     private final GenreRepo genreRepo;
 
@@ -34,12 +38,12 @@ public class MovieService {
         this.userRepo = userRepo;
     }
 
-
-    public ResponseEntity getAllMovies() {
-        return ResponseEntity.ok().body(movieRepo.findAll());
+    public List<MovieEntity> getAllMovies() throws InterruptedException {
+        return movieRepo.findAll();
     }
 
-    public ResponseEntity getMovieById(Long id) {
+
+    public Movie getMovieById(Long id) {
         Optional<MovieEntity> resMovie = movieRepo.findById(id);
 
         MovieEntity existsMovie = resMovie.get();
@@ -69,7 +73,7 @@ public class MovieService {
                 existsMovie.getComments()
         );
 
-        return ResponseEntity.ok().body(movie);
+        return movie;
     }
 
     @Transactional
@@ -258,8 +262,19 @@ public class MovieService {
         return ResponseEntity.ok().body(id + " удален");
     }
 
-    public ResponseEntity lastTwo() {
-        return ResponseEntity.ok(movieRepo.findFirst2ByOrderByIdDesc());
+    @Cacheable(value = "movie")
+    public List<MovieWithoutGenres> movieByGenreTitle(String genreTitle) {
+        try {
+            TimeUnit.SECONDS.sleep(2L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        List<MovieEntity> moviesEntity = movieRepo.findAllByGenresTitle(genreTitle);
+        ArrayList<MovieWithoutGenres> movies = new ArrayList<>();
+        for (MovieEntity movie: moviesEntity) {
+            movies.add(MovieWithoutGenres.toModel(movie));
+        }
+        return movies;
     }
 
 }

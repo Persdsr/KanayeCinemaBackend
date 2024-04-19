@@ -3,25 +3,18 @@ package com.example.kanaye.models;
 import com.example.kanaye.entity.GenreEntity;
 
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Genre {
+public class Genre implements Serializable {
     private Long id;
     private String title;
     private List<Movie> movies;
     private String imageURL;
     private String slugUrl;
 
-    public static Genre toModel(GenreEntity genreEntity) {
-        Genre genre = new Genre();
-        genre.setId(genreEntity.getId());
-        genre.setTitle(genreEntity.getTitle());
-        genre.setImageURL(genreEntity.getImageURL());
-        genre.setMovies(genreEntity.getMovies().stream().map(Movie::toModel).collect(Collectors.toList()));
 
-        return genre;
-    }
 
     public Genre() {
     }

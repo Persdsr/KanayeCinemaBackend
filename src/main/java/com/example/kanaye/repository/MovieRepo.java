@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface MovieRepo extends JpaRepository<MovieEntity, Long> {
     List<MovieEntity> findFirst2ByOrderByIdDesc();
-
+    List<MovieEntity> findAllByGenresTitle(String genreTitle);
 }

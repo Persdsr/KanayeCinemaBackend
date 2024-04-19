@@ -7,11 +7,12 @@ import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Serializable {
     private Long id;
     private String title;
     private Float duration;

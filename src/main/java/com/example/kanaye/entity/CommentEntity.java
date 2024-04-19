@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import com.example.kanaye.entity.User;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 @Entity
@@ -15,7 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CommentEntity {
+public class CommentEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,5 +1,7 @@
 package com.example.kanaye.entity;
 
-public enum EReview {
+import java.io.Serializable;
+
+public enum EReview implements Serializable {
     POSITIVE, NEGATIVE, NEUTRAL
 }

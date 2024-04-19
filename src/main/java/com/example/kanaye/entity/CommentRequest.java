@@ -1,6 +1,8 @@
 package com.example.kanaye.entity;
 
-public class CommentRequest {
+import java.io.Serializable;
+
+public class CommentRequest implements Serializable {
     private Long movieId;
     private String message;
     private String username;

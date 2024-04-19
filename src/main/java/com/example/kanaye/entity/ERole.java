@@ -1,5 +1,7 @@
 package com.example.kanaye.entity;
 
-public enum ERole {
+import java.io.Serializable;
+
+public enum ERole implements Serializable {
     USER, ADMIN, MODERATOR, CREATOR, CRITIC, BANNED
 }
