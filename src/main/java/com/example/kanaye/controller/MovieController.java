@@ -38,7 +38,7 @@ public class MovieController {
         return ResponseEntity.ok().body(movieService.getMovieById(id));
     }
 
-    @GetMapping("/api/movies/{genreTitle}")
+    @GetMapping("/api/genre/{genreTitle}")
     public ResponseEntity getMovieByGenreTitle(@PathVariable("genreTitle") String genreTitle) {
         return ResponseEntity.ok().body(movieService.movieByGenreTitle(genreTitle));
     }
@@ -78,7 +78,6 @@ public class MovieController {
     @GetMapping("/download/{filename:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
         Resource resource = storageService.loadAsResource(filename);
-        System.out.println("RABOTAEM");
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);

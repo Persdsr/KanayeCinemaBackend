@@ -21,7 +21,7 @@ public class GenreController {
         return genreService.getAllGenres();
     }
 
-    @GetMapping("/api/genre/{genre}")
+    @GetMapping("/api/genre123/{genre}")
     public ResponseEntity getGenreDetail(@PathVariable("genre") String genreSlugUrl) {
         return genreService.getGenreDetail(genreSlugUrl);
     }
