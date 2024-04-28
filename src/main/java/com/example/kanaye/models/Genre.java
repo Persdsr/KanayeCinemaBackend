@@ -2,14 +2,17 @@ package com.example.kanaye.models;
 
 import com.example.kanaye.entity.GenreEntity;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Genre implements Serializable {
     private Long id;

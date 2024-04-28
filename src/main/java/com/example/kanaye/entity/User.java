@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,7 +16,8 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
 })
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class User implements Serializable {
     @Id

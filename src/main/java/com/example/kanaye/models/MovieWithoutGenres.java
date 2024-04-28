@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -15,7 +16,8 @@ import java.util.Date;
 import java.util.Set;
 import java.util.List;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class MovieWithoutGenres implements Serializable {
     private Long id;

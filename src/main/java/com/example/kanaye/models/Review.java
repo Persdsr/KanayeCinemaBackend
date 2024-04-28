@@ -3,15 +3,14 @@ package com.example.kanaye.models;
 import com.example.kanaye.entity.EReview;
 import com.example.kanaye.entity.ReviewEntity;
 import com.example.kanaye.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 public class Review implements Serializable {
     private User author;
     private String title;

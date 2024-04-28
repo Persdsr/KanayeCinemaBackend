@@ -1,15 +1,14 @@
 package com.example.kanaye.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name = "roles")
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Role implements Serializable {
     @Id

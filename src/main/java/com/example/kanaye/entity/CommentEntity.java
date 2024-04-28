@@ -2,11 +2,10 @@ package com.example.kanaye.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import com.example.kanaye.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -15,7 +14,8 @@ import java.util.Optional;
 @Table(name = "comments")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class CommentEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +32,7 @@ public class CommentEntity implements Serializable {
     @JoinColumn(name = "movie_id")
     @JsonIgnore
     private MovieEntity movie;
+
+
 
 }

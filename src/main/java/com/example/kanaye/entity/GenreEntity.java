@@ -2,15 +2,16 @@ package com.example.kanaye.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "genre")
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class GenreEntity implements Serializable {
 
     @Id
@@ -30,6 +31,9 @@ public class GenreEntity implements Serializable {
 
     public GenreEntity(String title) {
         this.title = title;
+    }
+
+    public GenreEntity() {
     }
 
     public GenreEntity(Long id, String title, String imageURL, Set<MovieEntity> movies) {

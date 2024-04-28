@@ -1,12 +1,15 @@
 package com.example.kanaye.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-@Data
 @NoArgsConstructor
+@Setter
+@Getter
 public class CommentRequest implements Serializable {
     private Long movieId;
     private String message;

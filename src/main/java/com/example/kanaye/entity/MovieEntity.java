@@ -3,7 +3,9 @@ package com.example.kanaye.entity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,7 +13,8 @@ import java.io.Serializable;
 import java.util.*;
 @Entity
 @Table(name = "movie")
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class MovieEntity implements Serializable {
 
