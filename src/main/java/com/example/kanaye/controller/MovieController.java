@@ -1,6 +1,5 @@
 package com.example.kanaye.controller;
 
-import com.example.kanaye.entity.MovieEntity;
 import com.example.kanaye.service.MovieService;
 import com.example.kanaye.service.StorageService;
 import com.example.kanaye.models.Movie;
@@ -10,11 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

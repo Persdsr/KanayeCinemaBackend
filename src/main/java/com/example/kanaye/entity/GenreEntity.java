@@ -1,12 +1,16 @@
 package com.example.kanaye.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "genre")
+@Data
+@NoArgsConstructor
 public class GenreEntity implements Serializable {
 
     @Id
@@ -28,9 +32,6 @@ public class GenreEntity implements Serializable {
         this.title = title;
     }
 
-    public GenreEntity() {
-    }
-
     public GenreEntity(Long id, String title, String imageURL, Set<MovieEntity> movies) {
         this.id = id;
         this.title = title;
@@ -38,43 +39,4 @@ public class GenreEntity implements Serializable {
         this.movies = movies;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSlugUrl() {
-        return slugUrl;
-    }
-
-    public void setSlugUrl(String slugUrl) {
-        this.slugUrl = slugUrl;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }
-
-    public Set<MovieEntity> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Set<MovieEntity> movies) {
-        this.movies = movies;
-    }
 }

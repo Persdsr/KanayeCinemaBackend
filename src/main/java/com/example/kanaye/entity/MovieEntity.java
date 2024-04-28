@@ -2,14 +2,17 @@ package com.example.kanaye.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.*;
-
 @Entity
 @Table(name = "movie")
+@Data
+@NoArgsConstructor
 public class MovieEntity implements Serializable {
 
     @Id
@@ -60,7 +63,7 @@ public class MovieEntity implements Serializable {
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<CommentEntity> comments = new HashSet<>();
+    private Set<CommentEntity> comments;
 
 
     public MovieEntity(Long id, String title, Float duration, Float fees, String slogan, String description, String movieFileUrl, String slugUrl, String poster, String verticalPoster, String fullPoster, String trailer, Integer yearProduction, String country, Integer budget, Integer ageLimit, List<String> screenshots, String author, Date datePremiere, Set<GenreEntity> genres, Set<CommentEntity> comments) {
@@ -87,185 +90,4 @@ public class MovieEntity implements Serializable {
         this.comments = comments;
     }
 
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getSlugUrl() {
-        return slugUrl;
-    }
-
-    public List<ReviewEntity> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<ReviewEntity> reviews) {
-        this.reviews = reviews;
-    }
-
-    public List<String> getScreenshots() {
-        return screenshots;
-    }
-
-    public void setScreenshots(List<String> screenshots) {
-        this.screenshots = screenshots;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getVerticalPoster() {
-        return verticalPoster;
-    }
-
-    public void setVerticalPoster(String verticalPoster) {
-        this.verticalPoster = verticalPoster;
-    }
-
-    public String getPoster() {
-        return poster;
-    }
-
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
-    public void setSlugUrl(String slugUrl) {
-        this.slugUrl = slugUrl;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFullPoster() {
-        return fullPoster;
-    }
-
-    public void setFullPoster(String fullPoster) {
-        this.fullPoster = fullPoster;
-    }
-
-    public String getTrailer() {
-        return trailer;
-    }
-
-    public void setTrailer(String trailer) {
-        this.trailer = trailer;
-    }
-
-    public Integer getYearProduction() {
-        return yearProduction;
-    }
-
-    public void setYearProduction(Integer yearProduction) {
-        this.yearProduction = yearProduction;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Integer getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Integer budget) {
-        this.budget = budget;
-    }
-
-    public Integer getAgeLimit() {
-        return ageLimit;
-    }
-
-    public void setAgeLimit(Integer ageLimit) {
-        this.ageLimit = ageLimit;
-    }
-
-    public Set<CommentEntity> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<CommentEntity> comments) {
-        this.comments = comments;
-    }
-
-    public Date getDatePremiere() {
-        return datePremiere;
-    }
-
-    public void setDatePremiere(Date datePremiere) {
-        this.datePremiere = datePremiere;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Float getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Float duration) {
-        this.duration = duration;
-    }
-
-    public Float getFees() {
-        return fees;
-    }
-
-    public void setFees(Float fees) {
-        this.fees = fees;
-    }
-
-    public String getSlogan() {
-        return slogan;
-    }
-
-    public void setSlogan(String slogan) {
-        this.slogan = slogan;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getMovieFileUrl() {
-        return movieFileUrl;
-    }
-
-    public void setMovieFileUrl(String movieFileUrl) {
-        this.movieFileUrl = movieFileUrl;
-    }
-
-    public Set<GenreEntity> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(Set<GenreEntity> genres) {
-        this.genres = genres;
-    }
-
-    public MovieEntity() {
-
-    }
 }

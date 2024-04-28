@@ -2,15 +2,13 @@ package com.example.kanaye.service;
 
 import com.example.kanaye.entity.GenreEntity;
 import com.example.kanaye.entity.MovieEntity;
-import com.example.kanaye.entity.User;
+import com.example.kanaye.models.MovieWithGenreTitle;
 import com.example.kanaye.models.MovieWithoutGenres;
 import com.example.kanaye.repository.GenreRepo;
 import com.example.kanaye.repository.MovieRepo;
 import com.example.kanaye.models.Movie;
 import com.example.kanaye.repository.UserRepository;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.RedisHash;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,40 +36,16 @@ public class MovieService {
         this.userRepo = userRepo;
     }
 
-    public List<MovieEntity> getAllMovies() throws InterruptedException {
+    public List<MovieEntity> getAllMovies() {
         return movieRepo.findAll();
     }
 
 
-    public Movie getMovieById(Long id) {
+    public MovieWithGenreTitle getMovieById(Long id) {
         Optional<MovieEntity> resMovie = movieRepo.findById(id);
 
         MovieEntity existsMovie = resMovie.get();
-
-        Movie movie = new Movie(
-                existsMovie.getId(),
-                existsMovie.getTitle(),
-                existsMovie.getDuration(),
-                existsMovie.getFees(),
-                existsMovie.getSlogan(),
-                existsMovie.getDescription(),
-                existsMovie.getMovieFileUrl(),
-                existsMovie.getGenres(),
-                existsMovie.getSlugUrl(),
-                existsMovie.getPoster(),
-                existsMovie.getVerticalPoster(),
-                existsMovie.getFullPoster(),
-                existsMovie.getTrailer(),
-                existsMovie.getYearProduction(),
-                existsMovie.getCountry(),
-                existsMovie.getBudget(),
-                existsMovie.getAgeLimit(),
-                existsMovie.getScreenshots(),
-                existsMovie.getReviews(),
-                existsMovie.getAuthor(),
-                existsMovie.getDatePremiere(),
-                existsMovie.getComments()
-        );
+        MovieWithGenreTitle movie = MovieWithGenreTitle.toModel(existsMovie);
 
         return movie;
     }
@@ -274,6 +248,7 @@ public class MovieService {
         for (MovieEntity movie: moviesEntity) {
             movies.add(MovieWithoutGenres.toModel(movie));
         }
+
         return movies;
     }
 
