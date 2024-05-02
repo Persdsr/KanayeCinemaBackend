@@ -1,9 +1,7 @@
 package com.example.kanaye.controller;
 
-import com.example.kanaye.entity.CommentEntity;
-import com.example.kanaye.entity.CommentRequest;
+import com.example.kanaye.models.CommentRequest;
 import com.example.kanaye.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

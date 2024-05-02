@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "review")
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
@@ -35,4 +34,11 @@ public class ReviewEntity implements Serializable {
     @JsonIgnore
     private MovieEntity movie;
 
+    public ReviewEntity(User author, EReview review, String text, String title, MovieEntity movie) {
+        this.author = author;
+        this.review = review;
+        this.text = text;
+        this.title = title;
+        this.movie = movie;
+    }
 }

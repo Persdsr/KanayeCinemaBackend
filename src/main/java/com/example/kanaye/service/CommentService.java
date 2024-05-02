@@ -1,17 +1,14 @@
 package com.example.kanaye.service;
 
 import com.example.kanaye.entity.CommentEntity;
-import com.example.kanaye.entity.CommentRequest;
+import com.example.kanaye.models.CommentRequest;
 import com.example.kanaye.entity.MovieEntity;
 import com.example.kanaye.entity.User;
 import com.example.kanaye.repository.CommentRepo;
 import com.example.kanaye.repository.MovieRepo;
 import com.example.kanaye.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CommentService {

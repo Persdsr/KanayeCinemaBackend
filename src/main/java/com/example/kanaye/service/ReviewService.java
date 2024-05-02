@@ -3,6 +3,8 @@ package com.example.kanaye.service;
 import com.example.kanaye.entity.MovieEntity;
 import com.example.kanaye.entity.ReviewEntity;
 import com.example.kanaye.entity.User;
+import com.example.kanaye.models.Review;
+import com.example.kanaye.models.ReviewRequest;
 import com.example.kanaye.repository.MovieRepo;
 import com.example.kanaye.repository.ReviewRepo;
 import com.example.kanaye.repository.UserRepository;
@@ -29,9 +31,14 @@ public class ReviewService {
         return ResponseEntity.ok().body("");
     }
 
-    public ResponseEntity createReviewByMovieId(Long movieId, ReviewEntity reviewRequest, String author) {
-        MovieEntity movie = movieRepo.findById(movieId).orElse(null);
-        User user = userRepository.findByUsername(author).orElse(null);
+    public String deleteMovieById(Long reviewId) {
+        reviewRepo.deleteById(reviewId);
+        return "OK";
+    }
+
+    public ResponseEntity createReviewByMovieId(ReviewRequest reviewRequest) {
+        User user = userRepository.findByUsername(reviewRequest.getUsername()).orElse(null);
+        MovieEntity movie = movieRepo.findById(reviewRequest.getMovieId()).orElse(null);
 
         ReviewEntity review = new ReviewEntity();
         review.setMovie(movie);

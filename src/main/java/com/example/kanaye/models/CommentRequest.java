@@ -1,4 +1,4 @@
-package com.example.kanaye.entity;
+package com.example.kanaye.models;
 
 import lombok.Data;
 import lombok.Getter;
